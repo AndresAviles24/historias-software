@@ -3,7 +3,7 @@
 # Análisis y Diseño de Software
 
 ## Valor
-Obtener ingresos por comisión a partir de las trasacciones de compra/venta de cartas.
+Mejorar la experiencia musical de los usuarios ofreciendo listas de reproducción personalizadas y únicas basadas en sus preferencias musicales, lo que promueve el descubrimiento de nueva música.
 
 ## Historias de usuario
 
