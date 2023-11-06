@@ -4,7 +4,6 @@
 - Quiero: Acceder a la aplicación y obtener recomendaciones personalizadas basadas en mis gustos musicales.
 - Para: Descubrir nueva música y crear playlists que reflejen mis preferencias.
 
-
 ## Especificación de requerimientos.
 
 1. La aplicación debe utilizar la autenticación OAuth de Spotify para acceder a los datos del usuario.
@@ -12,6 +11,7 @@
 3. Las recomendaciones deben poder generarse a partir de los artistas más escuchados del usuario y/o pistas guardadas.
 4. Se debe permitir que el usuario seleccione como maximo 5 de sus bandas y/o canciones favoritas, y que el total de canciones en la playlist a generar este en el intervalo de 1-100.
 5. Si el usuario selecciona al menos un artista para, puede generar su playlist sin seleccionar ninguna cancion, y viceversa.
+6. La aplicacion debe mostrar los generos musicales disponbles en Spotify.
 
 ## Analisis
 
@@ -20,7 +20,7 @@
 A continuación se presenta la pantalla de recomendaciones, cuyo funcionamiento es:
 
 
-![Alt text](recomendacion)
+![pagina de recomendacion](img/recomendacion.png)
 
 ## Criterios de aceptacion
 
@@ -35,7 +35,7 @@ Gherkin
 
 ## Pantalla de Selección de Preferencias Musicales
 
-1. Para recuperar las canciones de preferencias del usuario:
+1. Para recuperar las canciones de preferencia del usuario:
 
 Request:
 
@@ -145,3 +145,88 @@ Response: No encontrado o error statusCode: 404
 }
 ```
 
+Response: Recurso bloqueado statusCode: 401
+```
+{
+    "error": {
+        "status": 401,
+        "message": "No token provided"
+    }
+}
+```
+
+2. Para recuperar los artistas de preferencia del usuario:
+
+Request:
+
+```
+GET https://api.spotify.com/v1/me/top/artists
+Accept: Application/json
+Authorization: Bearer {Spotify User Token}
+```
+Response: Exitoso statusCode: 200
+```
+{
+  "href": "https://api.spotify.com/v1/me/top/artists?limit=1&offset=0",
+  "limit": 1,
+  "next": "https://api.spotify.com/v1/me/top/artists?limit=1&offset=1",
+  "offset": 0,
+  "previous": null,
+  "total": 42,
+  "items": [
+    {
+      "external_urls": {
+        "spotify": "https://open.spotify.com/artist/568ZhdwyaiCyOGJRtNYhWf"
+      },
+      "followers": {
+        "href": null,
+        "total": 0
+      },
+      "genres": ["album rock", "classic rock", "hard rock", "metal", "rock"],
+      "href": "https://api.spotify.com/v1/artists/568ZhdwyaiCyOGJRtNYhWf",
+      "id": "568ZhdwyaiCyOGJRtNYhWf",
+      "images": [
+        {
+          "url": "https://i.scdn.co/image/ab6761610000e5eb607e7523c28dd40288a08df4",
+          "height": 640,
+          "width": 640
+        },
+        {
+          "url": "https://i.scdn.co/image/ab67616100005174607e7523c28dd40288a08df4",
+          "height": 320,
+          "width": 320
+        },
+        {
+          "url": "https://i.scdn.co/image/ab6761610000f178607e7523c28dd40288a08df4",
+          "height": 160,
+          "width": 160
+        }
+      ],
+      "name": "Deep Purple",
+      "popularity": 63,
+      "type": "artist",
+      "uri": "spotify:artist:568ZhdwyaiCyOGJRtNYhWf"
+    }
+  ]
+}
+```
+
+Response: No encontrado o error statusCode: 404
+```
+{
+  "error": {
+    "status": 404,
+    "message": "Not Found"
+  }
+}
+```
+
+Response: Recurso bloqueado o statusCode: 401
+```
+{
+    "error": {
+        "status": 401,
+        "message": "No token provided"
+    }
+}
+```
