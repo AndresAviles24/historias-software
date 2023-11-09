@@ -34,7 +34,7 @@
 
 ## Pantalla de Historial
 
-1. Para acceder al historial de pla
+1. Para acceder al historial de playlists
 
 ```
 GET BASE_URL/api/v1/user/{user_id}/playlists

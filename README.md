@@ -1,6 +1,6 @@
 # historias-software
 
-# Análisis y Diseño de Software
+# Aplicacion generadora de playlists en base a los gustos del usuario
 
 ## Valor
 Mejorar la experiencia musical de los usuarios ofreciendo listas de reproducción personalizadas y únicas basadas en sus preferencias musicales, lo que promueve el descubrimiento de nueva música.
